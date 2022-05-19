@@ -20,6 +20,7 @@ export const BasicModal = ({
         backdrop={backdrop || ''}
         isOpen={isOpen}
         toggle={toggle}
+
         size={size}
         id={modalStyles}
       >

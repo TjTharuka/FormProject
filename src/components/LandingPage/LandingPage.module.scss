@@ -3,3 +3,19 @@
 #background {
   z-index: 1;
 }
+
+
+#addPaperModelId{
+  max-width: 50%;
+}
+
+@media(max-width:870px){
+  #addPaperModelId{
+    max-width: 75%;
+  }
+}
+@media(max-width:576px){
+  #addPaperModelId{
+    max-width: 100%;
+  }
+}

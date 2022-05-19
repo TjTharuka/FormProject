@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import FooterComponent from '../components/commons/Footer/FooterComponent';
@@ -10,6 +10,9 @@ export const PrivateRoute = ({ component: Component, location, ...rest }) => {
 
   const query = location.pathname;
   const searchUrl = location.search;
+
+  // Temporay
+  const [addPaperState, setAddPaperState] = useState(true);
 
   let finalUrl;
   if (searchUrl) {
@@ -30,16 +33,16 @@ export const PrivateRoute = ({ component: Component, location, ...rest }) => {
     <>
       {isAuthenticated ? (
         <>
-          <NavBar />
+          <NavBar addPaperState={addPaperState} setAddPaperState={setAddPaperState}/>
           <Route
             {...rest}
             component={(props) => (
               <div>
-                <Component {...props} />
+                <Component {...props} addPaperState={addPaperState} setAddPaperState={setAddPaperState}/>
               </div>
             )}
           />
-          <FooterComponent />
+          {/* <FooterComponent /> */}
         </>
       ) : (
         <Redirect to="/login" />
