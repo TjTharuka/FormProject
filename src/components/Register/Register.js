@@ -23,20 +23,20 @@ import InputError from '../commons/InputError/InputError';
 import styles from './Register.module.scss';
 import userAccess from '../../config/userAccessConfig';
 import { registerUser } from '../../actions';
+import { FormControl, MenuItem, Select,SelectChangeEvent } from '@material-ui/core';
+import userAccessConfig from '../../config/userAccessConfig';
 
 const Register = () => {
   const dispatch = useDispatch();
 
   const initialValues = {
-    firstName: '',
-    lastName: '',
-    age: '',
-    email: '',
-    address: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    nic: '',
+    name: "",
+    age: "",
+    nic:"",
+    email: "",
+    password: "",
+    phone: "",
+    role: ""
   };
 
   useEffect(() => {
@@ -49,6 +49,7 @@ const Register = () => {
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(
     false
   );
+  const [userRole, setuserRole] = useState(userAccessConfig.userRoles.customer);
 
   // Visibility click
   const passwordVisibilityChange = () => {
@@ -60,31 +61,33 @@ const Register = () => {
     setConfirmPasswordVisibility(!confirmPasswordVisibility);
   };
 
+  // Event handlers
   const formSubmit = (data) => {
     const {
-      firstName,
-      lastName,
-      password,
+      name,
       age,
-      phone,
-      address,
-      email,
       nic,
+      email,
+      password,
+      phone,
+      role,
     } = data;
     const userData = {
-      name: `${firstName.toString().trim()} ${lastName.toString().trim()}`,
+      name:`${name.toString().trim()}`,
       age,
       nic,
-      address,
-      password,
       email,
+      password,
       phone,
-      role: userAccess.userRoles.customer,
+      role:userRole,
     };
 
     dispatch(registerUser(userData));
   };
 
+  const handleRoleChange = (event) => {
+    setuserRole(event.target.value);
+  };
   return (
     <>
       <main className={styles.mainWrapper}>
@@ -124,6 +127,7 @@ const Register = () => {
                         validationSchema={registerSchema}
                       >
                         <Form>
+                          {/* name */}
                           <FormGroup>
                             <InputGroup className="input-group-alternative">
                               <InputGroupAddon addonType="prepend">
@@ -134,71 +138,23 @@ const Register = () => {
                                   />
                                 </InputGroupText>
                               </InputGroupAddon>
-                              <Field name="firstName">
+                              <Field name="name">
                                 {(props) => (
                                   <InputField
                                     {...props}
-                                    placeholder="first name"
+                                    placeholder="name"
                                     type="text"
-                                    id="firstName"
+                                    id="name"
                                   />
                                 )}
                               </Field>
                             </InputGroup>
                             <ErrorMessage
-                              name="firstName"
+                              name="name"
                               component={InputError}
                             />
                           </FormGroup>
-                          <FormGroup>
-                            <InputGroup className="input-group-alternative">
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i
-                                    className="fa fa-user-o"
-                                    aria-hidden="true"
-                                  />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Field name="lastName">
-                                {(props) => (
-                                  <InputField
-                                    {...props}
-                                    placeholder="last name"
-                                    type="text"
-                                    id="lastName"
-                                  />
-                                )}
-                              </Field>
-                            </InputGroup>
-                            <ErrorMessage
-                              name="lastName"
-                              component={InputError}
-                            />
-                          </FormGroup>
-                          <FormGroup>
-                            <InputGroup className="input-group-alternative">
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i
-                                    className="fa fa-user-o"
-                                    aria-hidden="true"
-                                  />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Field name="nic">
-                                {(props) => (
-                                  <InputField
-                                    {...props}
-                                    placeholder="N.I.C number"
-                                    type="text"
-                                    id="nic"
-                                  />
-                                )}
-                              </Field>
-                            </InputGroup>
-                            <ErrorMessage name="nic" component={InputError} />
-                          </FormGroup>
+                          {/* age */}
                           <FormGroup>
                             <InputGroup className="input-group-alternative">
                               <InputGroupAddon addonType="prepend">
@@ -222,6 +178,31 @@ const Register = () => {
                             </InputGroup>
                             <ErrorMessage name="age" component={InputError} />
                           </FormGroup>
+                          {/* nic */}
+                          <FormGroup>
+                            <InputGroup className="input-group-alternative">
+                              <InputGroupAddon addonType="prepend">
+                                <InputGroupText>
+                                  <i
+                                    className="fa fa-user-o"
+                                    aria-hidden="true"
+                                  />
+                                </InputGroupText>
+                              </InputGroupAddon>
+                              <Field name="nic">
+                                {(props) => (
+                                  <InputField
+                                    {...props}
+                                    placeholder="N.I.C number"
+                                    type="text"
+                                    id="nic"
+                                  />
+                                )}
+                              </Field>
+                            </InputGroup>
+                            <ErrorMessage name="nic" component={InputError} />
+                          </FormGroup>
+                          {/* email */}
                           <FormGroup>
                             <InputGroup className="input-group-alternative">
                               <InputGroupAddon addonType="prepend">
@@ -242,29 +223,7 @@ const Register = () => {
                             </InputGroup>
                             <ErrorMessage name="email" component={InputError} />
                           </FormGroup>
-                          <FormGroup>
-                            <InputGroup className="input-group-alternative">
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="ni ni-building" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Field name="address">
-                                {(props) => (
-                                  <InputField
-                                    {...props}
-                                    placeholder="address"
-                                    type="text"
-                                    id="address"
-                                  />
-                                )}
-                              </Field>
-                            </InputGroup>
-                            <ErrorMessage
-                              name="address"
-                              component={InputError}
-                            />
-                          </FormGroup>
+                          {/* phone */}
                           <FormGroup>
                             <InputGroup className="input-group-alternative">
                               <InputGroupAddon addonType="prepend">
@@ -285,6 +244,7 @@ const Register = () => {
                             </InputGroup>
                             <ErrorMessage name="phone" component={InputError} />
                           </FormGroup>
+                          {/* password */}
                           <FormGroup>
                             <InputGroup className="input-group-alternative">
                               <InputGroupAddon addonType="prepend">
@@ -312,7 +272,7 @@ const Register = () => {
                               component={InputError}
                             />
                           </FormGroup>
-
+                          {/* confirm password */}
                           <FormGroup>
                             <InputGroup className="input-group-alternative">
                               <InputGroupAddon addonType="prepend">
@@ -340,9 +300,22 @@ const Register = () => {
                               component={InputError}
                             />
                           </FormGroup>
+                          {/* role */}
+                            <FormControl fullWidth className="mb-4 mt-4">
+                            <Select
+                              labelId="role"
+                              id="role"
+                              onChange={handleRoleChange}
+                              value={userRole}
+                            >
+                              <MenuItem id={userAccessConfig.userRoles.admin} value="admin">Teacher</MenuItem>
+                              <MenuItem id={userAccessConfig.userRoles.customer} value="customer">Student</MenuItem>
+                            </Select>
+                            </FormControl>
 
                           <div className="col-md-12 row d-flex justify-content-between align-items-center pt-2  px-0 mx-0">
                             <div className="col-12 px-0 d-flex justify-content-center">
+                              {/* Sign up Button */}
                               <Button
                                 id="signupButton"
                                 className="py-2"

@@ -23,10 +23,12 @@ export const loginUser = (data) => (dispatch) => {
       }
     })
     .catch((error) => {
+      console.log(error.response);
+      console.log(error.response.data.msg);
       dispatch({
         type: TOAST_MESSAGE,
         status: false,
-        message: error.response ? error.response.data.message : error.message,
+        message: error.response ? error.response.data.msg : error.message,
       });
       dispatch(loadingState(false));
     });
@@ -65,7 +67,7 @@ export const registerUser = (userData) => (dispatch) => {
       dispatch({
         type: TOAST_MESSAGE,
         status: false,
-        message: error.response ? error.response.data.message : error.message,
+        message: error.response ? error.response.data.msg : error.message,
       });
       dispatch(loadingState(false));
     });

@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { firstNameLastName } from './validation.config';
+import { firstNameLastName,name } from './validation.config';
 
 // Common validation
 const emailValidation = Yup.string()
@@ -19,20 +19,19 @@ const mobileValidation = Yup.string()
 
 const addressValidation = Yup.string().required('Address is required');
 const nicValidation = Yup.string()
-  .required('N.I.C number is required')
-  .max(15)
-  .min(10);
+.required('N.I.C number is required')
+.max(15)
+.min(10);
 
 // user registration validations
 export const registerSchema = Yup.object({
-  ...firstNameLastName,
-  email: emailValidation,
-  password: passwordValidation,
-  confirmPassword,
-  age: Yup.number().required('Age is required').min(6).max(120),
-  phone: mobileValidation,
-  address: addressValidation,
-  nic: nicValidation,
+    ...name,
+    age: Yup.number().required('Age is required').min(6).max(120),
+    nic:nicValidation,
+    email: emailValidation,
+    password: passwordValidation,
+    confirmPassword,
+    phone: mobileValidation,
 });
 
 export const loginSchema = Yup.object({

@@ -54,7 +54,7 @@ const Login = () => {
         <section className={cx('section section-shaped', styles.bgWrapper)}>
           <div
             id={styles.background}
-            className="shape shape-style-1 bg-gradient-default"
+            className="shape shape-style-1 "
           >
             <span />
             <span />

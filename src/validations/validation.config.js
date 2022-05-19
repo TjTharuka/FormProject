@@ -1,5 +1,13 @@
 import * as Yup from 'yup';
 
+export const name = {
+  name: Yup.string()
+    .required('First name is required')
+    .matches(
+      /^[A-Za-z0-9_ \- ~.]*$/,
+      'First name can only use Letters, Numbers, Underscore, Hyphen, Period and Tilde.'
+    ),
+};
 export const firstNameLastName = {
   firstName: Yup.string()
     .required('First name is required')
