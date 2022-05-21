@@ -1,0 +1,46 @@
+.fileUpload{
+    position: relative;
+}
+.fileUploadDiv{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border:1px solid grey;
+    min-height:50vh;
+    border-radius: 15px;
+    justify-content: center;
+
+    // &:hover.svg{
+        //     display:flex !important;
+        // }
+        
+    }
+    
+    .fileUpload:hover .svg{
+            display:flex !important;
+    }
+    .fileUpload:hover .uploadStateText{
+            display:flex !important;
+    }
+
+
+.svg{
+    font-size: 9rem !important; 
+    z-index:2;
+}
+.uploadStateText{
+    z-index:2;
+}
+.dragAndDrop{
+    position: absolute;
+    top:0;
+    left:0; 
+}
+.fileUploadInput{
+    z-index:3;
+    height:100%;
+    width:100%;
+    border: 2px solid red;
+    cursor: pointer;
+}

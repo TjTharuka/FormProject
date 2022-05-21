@@ -1,4 +1,4 @@
-@import '../../../styles/base/settings';
+@import '../../../../styles/base/settings';
 
 .AddQuaction{
   border-left: 7px solid #11975e;
@@ -17,4 +17,19 @@
 
 .input{
   padding-bottom: 1rem !important;
+}
+
+#addQuactionModel{
+  max-width: 50%;
+}
+
+@media(max-width:870px){
+  #addQuactionModel{
+    max-width: 75%;
+  }
+}
+@media(max-width:576px){
+  #addQuactionModel{
+    max-width: 100%;
+  }
 }

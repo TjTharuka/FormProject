@@ -6,15 +6,26 @@ import Row from 'reactstrap/lib/Row';
 import BootstrapTooltip from '../commons/toolTips/ToolTips';
 import cx from 'classnames';
 import CloseIcon from '@material-ui/icons/Close';
-import AddQuaction from './components/AddQuaction';
+import AddQuaction from './components/AddQuaction/AddQuaction';
+import PaperDetailsFrom from './components/PaperDetailsFrom/PaperDetailsFrom';
 import { Add } from '@material-ui/icons';
 import styles from './AddPaperComp.module.scss';
 import { Button } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPaper } from '../../actions/papers/papers';
 
-const LandingPage = ({setAddPaperState}) => {
+const AddPaperComp = ({setAddPaperState}) => {
 
   // STATE
   const [allQuaction, setAllQuaction] = useState([]);
+  const [PaperName, setPaperName] = useState("");
+  const [diffculty, setDiffculty] = useState("Normal");
+  const [grade, setGrade] = useState(10);
+
+  // REDUX STATE
+  const userId = useSelector((state) =>state.auth.user.user_id);
+
+  const dispatch = useDispatch();
 
   // EVENT HANDLERS
   const handleAddQuactionBtn = () => {
@@ -23,8 +34,19 @@ const LandingPage = ({setAddPaperState}) => {
   const handleDeleteQuactionBtn = (id) => {
     const newQuactionArray=allQuaction.filter(quaction=>quaction.id !== id)
     setAllQuaction(newQuactionArray);
-    console.log(newQuactionArray);
   };
+
+  const handleImageAdd = (id,file) => {
+    console.log(file);
+    const newQuactionArray=allQuaction.map(quaction=>{
+      console.log(quaction.id);
+      console.log(id);
+      if(quaction.id == id) return {...quaction,file:file,questionType:"image"}
+      return quaction;
+    });
+    setAllQuaction(newQuactionArray);
+  };
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const quactionsArray = Array.from(document.querySelectorAll('.AddQuaction'));
@@ -32,18 +54,35 @@ const LandingPage = ({setAddPaperState}) => {
     // modifiy quaction details for api endpoint
     const newQuactionArray=quactionsArray.map(element=>{
       return{
-        id:element.dataset.id,
+        // id:element.dataset.id,
         question:element.querySelector('#quactionId').value,
-        questionType:element.querySelector('#answerType').textContent
+        questionType:"text",
+        adminId:userId
+        // questionType:element.querySelector('#answerType').textContent
       };
     });
-    console.log(newQuactionArray);
+    console.log({
+      PaperName:PaperName,
+      adminId:userId,
+      dificultyLevel:diffculty,
+      grade:grade,
+      quactions:newQuactionArray
+    });
+    dispatch(createPaper({
+      PaperName:PaperName,
+      adminId:userId,
+      dificultyLevel:diffculty,
+      grade:grade,
+      quactions:newQuactionArray
+    }));
 
   };
 
 
   return (
     <>
+      {console.log(allQuaction)}
+
       {/* Close button */}
       <Row className="justify-content-end">
           <Col xs={8}>
@@ -62,6 +101,7 @@ const LandingPage = ({setAddPaperState}) => {
             </span>
           </Col>
       </Row>
+      {console.log(PaperName)}
 
       {/* title */}
       <Row className="justify-content-center mt-2 mb-3">
@@ -103,11 +143,14 @@ const LandingPage = ({setAddPaperState}) => {
         </div>
 
 
+        {/*paper details form*/}
+        <PaperDetailsFrom setPaperName={setPaperName} diffculty={diffculty} setDiffculty={setDiffculty} grade={grade} setGrade={setGrade}></PaperDetailsFrom>
+
         {/*Added Quactions */}
         <div className='mt-3' id="addedQuactions">
           {
             allQuaction.map(quactionObj=>(
-              <AddQuaction key={quactionObj.id} id={quactionObj.id} handleDeleteQuactionBtn={handleDeleteQuactionBtn}></AddQuaction>
+              <AddQuaction key={quactionObj.id} id={quactionObj.id} handleImageAdd={handleImageAdd} imageLocation={quactionObj?.file?.imgLocation} handleDeleteQuactionBtn={handleDeleteQuactionBtn}></AddQuaction>
             ))
           }
         </div>
@@ -117,4 +160,4 @@ const LandingPage = ({setAddPaperState}) => {
   );
 };
 
-export default LandingPage;
+export default AddPaperComp;

@@ -60,3 +60,8 @@ export const changePasswordSchema = Yup.object({
     .required('New password is required'),
   confirmPassword,
 });
+
+export const addPaperValidation = Yup.object({
+  PaperName: Yup.string()
+    .required('Paper Name is required'),
+});
