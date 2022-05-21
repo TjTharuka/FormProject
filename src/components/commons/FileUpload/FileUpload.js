@@ -38,27 +38,19 @@ function FileUpload({className="",id,handleImageAdd,setImageUploadModel,imageLoc
 
   return (
     <div className={cx(styles.fileUpload)}  onChange={handleChange}>        
-
         <div className={cx(styles.fileUploadDiv)}>
-
-               
-               
-               {(uploadSatate.split(' ')[0]=="Drag") &&   <CloudUploadOutlined className={cx(styles.svg,imageLocation?"display-none":"")} ></CloudUploadOutlined>}
+               {(uploadSatate.split(' ')[0]=="Drag") &&   <CloudUploadOutlined className={cx(styles.svg,imageLocation?"display-none":"",imageLocation?styles.textColorWhite:"")} ></CloudUploadOutlined>}
                {!(uploadSatate.split(' ')[0]=="Drag") &&  <PhotoSizeSelectActualOutlined className={cx(styles.svg,(imageLocation?"display-none":""))} ></PhotoSizeSelectActualOutlined>}
-                <div className={cx('font-1-4',imageLocation?"display-none":"",styles.uploadStateText)}>{uploadSatate}</div>
+                <div className={cx('font-1-4',imageLocation?"display-none":"",styles.uploadStateText,imageLocation?styles.textColorWhite:"")}>{uploadSatate}</div>
 
         </div>
 
-        {/* Uploaded Image */}
-        <div className={cx('p-1',styles.dragAndDrop)}>
-            <img src={imageLocation} className="w-100"></img>
+        {/* Uploaded Image preview */}
+        <div className={cx('p-1',styles.uploadedImagePreviewDiv)}>
+            <img src={imageLocation} className={cx('w-100',styles.uploadedImagePreviewImg)} ></img>
         </div>  
 
-
         <input   type="file"  border={false} className={cx('p-1  opacity-0',styles.fileUploadInput,styles.dragAndDrop)} ></input>
-
-
-
     </div>
   );
 }
