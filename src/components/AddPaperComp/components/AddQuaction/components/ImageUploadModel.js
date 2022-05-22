@@ -43,7 +43,7 @@ const ImageUploadMOdel = ({id,setImageUploadModel,handleImageAdd,imageLocation})
       {/* title */}
       <Row className="justify-content-center mt-2 mb-3">
         <h4 id={'styles.titleSize'} className=" font-weight-bold p-1">
-          Image Upload
+          Select Image 
         </h4>
       </Row>
 

@@ -28,7 +28,7 @@ const AddQuaction = ({setAddPaperState,handleDeleteQuactionBtn,handleImageAdd,id
               {/* <div className='border flex-1'>
               </div> */}
               {/* add image */}            
-              <BootstrapTooltip title={imageLocation?"view image":"select image"}>
+              <BootstrapTooltip title={imageLocation?"view selected image":"select image"}>
                 <div onClick={()=>setImageUploadModel(true)}>
                   {!imageLocation &&<InsertPhotoOutlined className='cursor-pointer ml-1 mr-1 '></InsertPhotoOutlined>}
                   {imageLocation && <CloudDoneOutlined className='text-color-primary cursor-pointer ml-1 mr-1'></CloudDoneOutlined>}

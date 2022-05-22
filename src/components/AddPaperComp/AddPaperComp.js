@@ -116,15 +116,15 @@ const AddPaperComp = ({setAddPaperState}) => {
         <div className='display-flex'>
           {/* Add quaction button */}
           <Button
-              className="background-primary cursor-pointer display-flex align-items-center"
+              className={cx("cursor-pointer display-flex align-items-center",styles.AddQuactionBtn)}
               size="sm"
               onClick={handleAddQuactionBtn}
             >
-              <span className="btn-inner--icon text-white ">
+              <span className="btn-inner--icon">
                 {/* <i className="fa fa-sign-out mr-2" /> */}
                 <Add className="mr-2" />
               </span>
-              <span className="text-capitalize text-white ml-1">
+              <span className="text-capitalize ml-1">
                 Add Quaction
               </span>
           </Button>   
@@ -132,7 +132,7 @@ const AddPaperComp = ({setAddPaperState}) => {
           {/* submit button */}
           {(!allQuaction.length==0) &&(
             <Button
-              className="background-primary cursor-pointer display-flex align-items-center ml-auto"
+              className={cx("background-primary cursor-pointer display-flex align-items-center ml-auto",styles.submitBtn)}
               type="submit"
               size="sm"
             >
