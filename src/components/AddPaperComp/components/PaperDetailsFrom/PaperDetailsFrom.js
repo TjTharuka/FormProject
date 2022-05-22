@@ -10,6 +10,7 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
+  Label,
   Row,
 } from 'reactstrap';
 import cx from 'classnames';
@@ -78,19 +79,23 @@ const Register = ({setPaperName,diffculty,setDiffculty,grade,setGrade}) => {
     >
       <Form className='mt-4'>
         {/* PaperName */}
+        <label for="PaperName" className={cx(styles.inputLabel)}>Paper Name</label>
         <FormGroup>
-          <InputGroup className="input-group-alternative">
+          <InputGroup className={cx(styles.inputLabel)}>
             <Field name="PaperName">
               {(props) => {
                 // set paper name to state
                 setPaperName(props.field.value);
                 return(
+                  <>
                   <InputField
                   {...props}
-                  placeholder="PaperName"
+                  placeholder="Paper Name"
                   type="text"
                   id="PaperName"
+                  classes={cx(styles.inputTextField)}
                   />
+                  </>
                 )}}
             </Field>
           </InputGroup>

@@ -5,6 +5,7 @@ import { FormControl, MenuItem, Select, TextField } from '@material-ui/core';
 import { CloudDoneOutlined, DeleteOutline, InsertPhotoOutlined } from '@material-ui/icons';
 import BasicModal from '../../../commons/Modal/BasicModal/BasicModal';
 import ImageUploadMOdel from './components/ImageUploadModel';
+import BootstrapTooltip from '../../../commons/toolTips/ToolTips';
 
 
 const AddQuaction = ({setAddPaperState,handleDeleteQuactionBtn,handleImageAdd,id,imageLocation}) => {
@@ -23,17 +24,20 @@ const AddQuaction = ({setAddPaperState,handleDeleteQuactionBtn,handleImageAdd,id
             {/* Quaction Row*/}
             <div className={cx('',styles.QuactionRow)}>
               {/* quaction */}
-              <TextField id="quactionId" className='flex-1' label="" placeholder='Quaction' variant="filled" />
+              <TextField id="quactionId" className='flex-1' label="" placeholder='type quaction...' variant="filled" />
               {/* <div className='border flex-1'>
               </div> */}
-              {/* add image */}
-              <div onClick={()=>setImageUploadModel(true)}>
-                {!imageLocation &&<InsertPhotoOutlined className='cursor-pointer ml-1 mr-1 '></InsertPhotoOutlined>}
-                {imageLocation && <CloudDoneOutlined className='text-color-primary cursor-pointer ml-1 mr-1'></CloudDoneOutlined>}
-              </div>
+              {/* add image */}            
+              <BootstrapTooltip title={imageLocation?"view image":"select image"}>
+                <div onClick={()=>setImageUploadModel(true)}>
+                  {!imageLocation &&<InsertPhotoOutlined className='cursor-pointer ml-1 mr-1 '></InsertPhotoOutlined>}
+                  {imageLocation && <CloudDoneOutlined className='text-color-primary cursor-pointer ml-1 mr-1'></CloudDoneOutlined>}
+                </div>
+              </BootstrapTooltip>
+
 
               {/* answer type */}
-              <FormControl  className="mt-1 w-20">
+              <FormControl  className="mt-1 flex-0-3">
                 <Select
                   labelId="answerType"
                   id="answerType"
@@ -41,7 +45,7 @@ const AddQuaction = ({setAddPaperState,handleDeleteQuactionBtn,handleImageAdd,id
                   value={answerType}
                 >
                   <MenuItem id={"ShortAnswer"} value="Short Answer">Short Answer</MenuItem>
-                  <MenuItem id={"LongAnswer"} value="LongAnswer">Long Answer</MenuItem>
+                  <MenuItem id={"LongAnswer"} value="Long Answer">Long Answer</MenuItem>
                 </Select>
               </FormControl>
 
@@ -49,29 +53,23 @@ const AddQuaction = ({setAddPaperState,handleDeleteQuactionBtn,handleImageAdd,id
 
             </div>
 
-
-              {/* Added image (if uploaded image) */}
-              <img src={imageLocation} className="w-100"/>
+            {/* Added image Preview (if uploaded image) */}
+            <BootstrapTooltip title="view image">
+              <div className='display-flex mt-3'>
+                {imageLocation && <img src={imageLocation} className={cx('border-radius-15 cursor-pointer ',styles.addedImagePreview)} onClick={()=>setImageUploadModel(!imageUploadModel)}/>}
+              </div>
+            </BootstrapTooltip>
 
 
             {/* Answer row*/}
-            <div className='mt-3'>
-              <TextField
-                id="answer-input"
-                label=""
-                className='col-9'
-                placeholder={answerType}
-                autoComplete="current-answer"
-                variant="standard"
-              />
-            </div>
+            <div className={cx('mt-3',styles.AnswerRow)}>{answerType}</div>
 
             {/* bottom line row  */}
             <div className='mt-4 display-flex'>
-              <DeleteOutline className={cx('cursor-pointer ml-auto ',styles.deleteIcon)} onClick={()=>handleDeleteQuactionBtn(id)} ></DeleteOutline>
+            <BootstrapTooltip title="delete">
+                <DeleteOutline className={cx('cursor-pointer ml-auto ',styles.deleteIcon)} onClick={()=>handleDeleteQuactionBtn(id)} ></DeleteOutline>
+            </BootstrapTooltip>
             </div>
-
-
 
             {/*image upload model*/}
             <BasicModal

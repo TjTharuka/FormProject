@@ -1,36 +1,32 @@
-.fileUpload{
-    position: relative;
-}
-.fileUpload:hover .svg{
-        display:flex !important;
-}
-.fileUpload:hover .uploadStateText{
-        display:flex !important;
-    }
-    
 .textColorWhite{
     color:white; 
 }
 
-.fileUpload:hover .uploadedImagePreviewImg{
+.uploadedImagePreviewDiv:hover .svg{
+        display:inline-block !important;
+}
+.uploadedImagePreviewDiv:hover .uploadStateText{
+        display:flex !important;
+}
+
+.uploadedImagePreviewDiv:hover .uploadedImagePreviewImg{
     filter: brightness(0.4);
 }
-.fileUploadDiv{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    border:1px solid grey;
-    min-height: 45.5vh;
-    border-radius: 15px;
-    justify-content: center;
+.fileUploadIcon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index:3;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
     
 
 .uploadedImagePreviewDiv{
-    position: absolute;
-    top:0;
-    left:0; 
+    position: relative;
+    border:1px solid grey;
+    border-radius:15px;
+    min-height:30vh;
 }
 .uploadedImagePreviewImg{
    border-radius:15px;
@@ -38,7 +34,7 @@
 }
 
 .svg{
-    font-size: 9rem !important; 
+    font-size: 4.5rem !important; 
     z-index:2;
 }
 .uploadStateText{
@@ -50,9 +46,9 @@
     left:0; 
 }
 .fileUploadInput{
-    z-index:3;
+    z-index:4;
     height:100%;
     width:100%;
-    border: 2px solid red;
     cursor: pointer;
+    color: transparent;
 }

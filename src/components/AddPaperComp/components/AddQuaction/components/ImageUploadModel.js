@@ -19,7 +19,7 @@ const ImageUploadMOdel = ({id,setImageUploadModel,handleImageAdd,imageLocation})
 
 
   return (
-    <>
+    <div className={cx(styles.ImageUploadModel)}>
       {/* Close button */}
       <Row className="justify-content-end">
           <Col xs={8}>
@@ -49,7 +49,7 @@ const ImageUploadMOdel = ({id,setImageUploadModel,handleImageAdd,imageLocation})
 
       <FileUpload handleImageAdd={handleImageAdd} id={id} setImageUploadModel={setImageUploadModel} imageLocation={imageLocation}></FileUpload>
 
-    </>
+    </div>
   );
 };
 
