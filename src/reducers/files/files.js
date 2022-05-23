@@ -1,7 +1,7 @@
 import { ADD_FILE } from '../../actions/types';
 
 const intialState={
-  uplodedFiles:null,
+  uplodedFiles:[],
 };
 
 export default (state = intialState, action) => {

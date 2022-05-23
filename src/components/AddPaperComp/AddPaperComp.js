@@ -30,7 +30,19 @@ const AddPaperComp = ({setAddPaperState}) => {
 
   const dispatch = useDispatch();
 
-  // useEffect
+  useEffect(()=>{
+
+    if(upalodedFielsQuactions.length){
+      // create paper
+      dispatch(createPaper({
+      PaperName:PaperName,
+      adminId:userId,
+      dificultyLevel:diffculty,
+      grade:grade,
+      quactions:upalodedFielsQuactions
+    }));
+    }
+  },[upalodedFielsQuactions])
 
   // EVENT HANDLERS
   // handle add quaction

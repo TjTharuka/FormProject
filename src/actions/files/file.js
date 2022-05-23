@@ -37,7 +37,6 @@ export const fileUpload = (quactionArray=[]) => (dispatch) => {
             });
             dispatch(loadingState(false));
           });
-    return;      
     }else{ // if quaction type text
 
       // set state to quaction
@@ -45,7 +44,6 @@ export const fileUpload = (quactionArray=[]) => (dispatch) => {
       // set state loading state false
       dispatch(loadingState(false));
 
-      return;
     }
   })
 
