@@ -62,11 +62,9 @@ export const loadPapers = (data) => (dispatch) => {
 
 
 export const selectPaper = (id) => (dispatch) => {
-  console.log(id);
   dispatch(loadingState(true));
   get(`/papers/${id}`)
   .then(({ data }) => {
-      console.log(data);
       if (data && data.status) {
         dispatch(selectPaperAction(data.data));
         dispatch(loadingState(false));

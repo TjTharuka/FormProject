@@ -2,7 +2,7 @@ import { LOAD_PAPERS,SELECT_PAPER} from '../../actions/types';
 
 const intialState={
   papers:[],
-  selectedPaper:null,
+  selectedPaper:[],
 };
 
 export default (state = intialState, action) => {
@@ -13,7 +13,6 @@ export default (state = intialState, action) => {
         papers: action.data,
       };
       case SELECT_PAPER:
-        console.log(action);
         return {
         ...state,
         selectedPaper: action.data,

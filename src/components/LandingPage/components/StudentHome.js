@@ -5,13 +5,17 @@ import Row from 'reactstrap/lib/Row';
 import styles from './StudentHome.module.scss';
 import cx from 'classnames';
 import PaperCard from './components/PaperCard/PaperCards';
+import PaperComp from './components/AnswerPaper/PaperComp';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPapers, selectPaper } from '../../../actions';
+import BasicModal from '../../commons/Modal/BasicModal/BasicModal';
 
 const StudentHome = ({addPaperState, setAddPaperState}) => {
 
   // REDUX STATE
   const allPapers = useSelector((state) =>state.paperReducer.papers);
+  const [paperViewState, setPaperViewState] = useState(false);
+
 
   const dispatch = useDispatch();
 
@@ -27,15 +31,34 @@ const StudentHome = ({addPaperState, setAddPaperState}) => {
 
   return (
     <>
-
+    {console.log(allPapers)}
       <Row className={cx(styles.paperCards)}>
-        {allPapers.map(paper=>(
+        {allPapers.map(quaction=>(
           <Col className='col-4'>
-            <PaperCard className="" key={paper._id} id={paper._id} selectPaperHandler={selectPaperHandler}></PaperCard>
+            <PaperCard 
+              className="" 
+              key={quaction._id} 
+              id={quaction._id} 
+              selectPaperHandler={selectPaperHandler}
+              setPaperViewState={()=>setPaperViewState(!paperViewState)}
+              quaction={quaction}
+              >
+            </PaperCard>
           </Col>
         ))}
       </Row>
 
+      {/*add paper model*/}
+      <BasicModal
+        isOpen={paperViewState}
+        modalStyles={styles.PaperViewModelId}
+        modalBodyStyles="p-0 px-4 py-3"
+        size="md"
+        >
+        <PaperComp
+            setPaperViewState={()=>setPaperViewState(!paperViewState)}
+        />
+      </BasicModal>
 
     </>
   );

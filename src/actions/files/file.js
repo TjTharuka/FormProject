@@ -16,7 +16,6 @@ export const addPaperNow = (data) => ({
 export const fileUpload = (quactionArray=[]) => async(dispatch) => {
   dispatch(loadingState(true));
 
-  console.log(quactionArray);
 
   await quactionArray.map(quaction=>{
     // if quaction type image
