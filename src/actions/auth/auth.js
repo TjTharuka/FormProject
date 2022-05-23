@@ -23,8 +23,6 @@ export const loginUser = (data) => (dispatch) => {
       }
     })
     .catch((error) => {
-      console.log(error.response);
-      console.log(error.response.data.msg);
       dispatch({
         type: TOAST_MESSAGE,
         status: false,

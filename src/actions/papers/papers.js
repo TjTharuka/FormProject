@@ -10,6 +10,7 @@ export const addPapare = (data) => ({
 });
 
 export const createPaper = (data) => (dispatch) => {
+  console.log(`11111`);
   dispatch(loadingState(true));
   post(`/quactions`, data)
     .then(({ data }) => {

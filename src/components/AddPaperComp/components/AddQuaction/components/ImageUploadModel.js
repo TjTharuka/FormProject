@@ -38,7 +38,6 @@ const ImageUploadMOdel = ({id,setImageUploadModel,handleImageAdd,imageLocation})
             </span>
           </Col>
       </Row>
-      {console.log(PaperName)}
 
       {/* title */}
       <Row className="justify-content-center mt-2 mb-3">

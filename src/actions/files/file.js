@@ -15,12 +15,13 @@ export const fileUpload = (quactionArray=[]) => (dispatch) => {
 
   quactionArray.map(quaction=>{
     // if quaction type image
+    console.log(quaction.fileId);
     if(quaction.fileId){
       postFormData(`/files`, quaction.fileId)
-          // upload image file
-          .then(({ data }) => {
-            if (data && data.status) {
-              // set original file uploaded
+      // upload image file
+      .then(({ data }) => {
+        if (data && data.status) {
+          // set original file uploaded
               quaction.fileId=data.data._id;
               dispatch(addFile(quaction));
               dispatch(loadingState(false));
@@ -37,7 +38,7 @@ export const fileUpload = (quactionArray=[]) => (dispatch) => {
             });
             dispatch(loadingState(false));
           });
-    }else{ // if quaction type text
+        }else{ // if quaction type text
 
       // set state to quaction
       dispatch(addFile(quaction));

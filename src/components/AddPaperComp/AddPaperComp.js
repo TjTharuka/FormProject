@@ -14,7 +14,6 @@ import { Button } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPaper } from '../../actions/papers/papers';
 import { fileUpload } from '../../actions/files/file';
-import { postFormData } from '../../api/main.api';
 
 const AddPaperComp = ({setAddPaperState}) => {
 
@@ -30,19 +29,6 @@ const AddPaperComp = ({setAddPaperState}) => {
 
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-
-    if(upalodedFielsQuactions.length){
-      // create paper
-      dispatch(createPaper({
-      PaperName:PaperName,
-      adminId:userId,
-      dificultyLevel:diffculty,
-      grade:grade,
-      quactions:upalodedFielsQuactions
-    }));
-    }
-  },[upalodedFielsQuactions])
 
   // EVENT HANDLERS
   // handle add quaction
@@ -86,42 +72,28 @@ const AddPaperComp = ({setAddPaperState}) => {
         const file=allQuaction[index].file.formData;
         // tempory
         newQuactionObj.fileId=file; 
-        postFormData('files',file);
       }
 
-    
-      
       return newQuactionObj;
-
-
     });
 
-
+    // upload all files and set all quactions to redux 
     dispatch(fileUpload(newQuactionArray));
 
-
-    console.log({
+    // create quaction paper
+    dispatch(createPaper({
       PaperName:PaperName,
       adminId:userId,
       dificultyLevel:diffculty,
       grade:grade,
       quactions:upalodedFielsQuactions
-    });
-    // dispatch(createPaper({
-    //   PaperName:PaperName,
-    //   adminId:userId,
-    //   dificultyLevel:diffculty,
-    //   grade:grade,
-    //   quactions:newQuactionArray
-    // }));
+    }));
 
   };
 
 
   return (
     <>
-      {console.log(upalodedFielsQuactions)}
-
       {/* Close button */}
       <Row className="justify-content-end">
           <Col xs={8}>
