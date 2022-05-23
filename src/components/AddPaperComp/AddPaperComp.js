@@ -30,7 +30,7 @@ const AddPaperComp = ({setAddPaperState}) => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    if(upalodedFielsQuactions.uplodedFiles.length === allQuaction.length){
+    if(upalodedFielsQuactions.uplodedFiles.length && upalodedFielsQuactions.uplodedFiles.length === allQuaction.length){
       console.log(upalodedFielsQuactions.uplodedFiles);
       
     // create quaction paper
