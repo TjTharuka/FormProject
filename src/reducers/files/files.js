@@ -1,7 +1,8 @@
-import { ADD_FILE } from '../../actions/types';
+import { ADD_FILE,ADD_PAPER_NOW } from '../../actions/types';
 
 const intialState={
   uplodedFiles:[],
+  addPaperState:false,
 };
 
 export default (state = intialState, action) => {
@@ -9,6 +10,11 @@ export default (state = intialState, action) => {
     case ADD_FILE:
       return {
         uplodedFiles: [...state.uplodedFiles,action.data],
+      };
+    case ADD_PAPER_NOW:
+      return {
+        ...state,
+        addPaperState: true,
       };
     default:
       return {...state};

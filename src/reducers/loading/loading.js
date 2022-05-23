@@ -4,6 +4,7 @@ export default (state = {}, action) => {
   switch (action.type) {
     case LOADING:
       return {
+        ...state,
         isLoading: action.isLoading,
       };
     default:

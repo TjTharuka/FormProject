@@ -25,9 +25,27 @@ const AddPaperComp = ({setAddPaperState}) => {
 
   // REDUX STATE
   const userId = useSelector((state) =>state.auth.user.user_id);
-  const upalodedFielsQuactions = useSelector((state) =>state.fileReducer.uplodedFiles);
+  const upalodedFielsQuactions = useSelector((state) =>state.fileReducer);
 
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    if(upalodedFielsQuactions.uplodedFiles.length === allQuaction.length){
+      console.log(upalodedFielsQuactions.uplodedFiles);
+      
+    // create quaction paper
+    dispatch(createPaper({
+      PaperName:PaperName,
+      adminId:userId,
+      dificultyLevel:diffculty,
+      grade:grade,
+      quactions:upalodedFielsQuactions.uplodedFiles
+    }));
+
+      
+    }
+  },[upalodedFielsQuactions.uplodedFiles])
+
 
 
   // EVENT HANDLERS
@@ -77,17 +95,30 @@ const AddPaperComp = ({setAddPaperState}) => {
       return newQuactionObj;
     });
 
+    
+    
+    // // create quaction paper
+    // const quactionPaperObject={
+    //   PaperName:PaperName,
+    //   adminId:userId,
+    //   dificultyLevel:diffculty,
+    //   grade:grade,
+    //   // quactions:upalodedFielsQuactions
+    // };
+    
     // upload all files and set all quactions to redux 
     dispatch(fileUpload(newQuactionArray));
 
-    // create quaction paper
-    dispatch(createPaper({
-      PaperName:PaperName,
-      adminId:userId,
-      dificultyLevel:diffculty,
-      grade:grade,
-      quactions:upalodedFielsQuactions
-    }));
+
+    // dispatch(createPaper({
+    //   PaperName:PaperName,
+    //   adminId:userId,
+    //   dificultyLevel:diffculty,
+    //   grade:grade,
+    //   quactions:upalodedFielsQuactions
+    // }));
+
+
 
   };
 

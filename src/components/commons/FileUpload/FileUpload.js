@@ -26,7 +26,6 @@ function FileUpload({className="",id,handleImageAdd,setImageUploadModel,imageLoc
         handleImageAdd(id,{imgLocation:imgLocation,formData:formData});
 
         // postFormData('files',formData).then(data=>{
-        //     console.log(data);
         // })
     };   
 

@@ -10,7 +10,6 @@ export const addPapare = (data) => ({
 });
 
 export const createPaper = (data) => (dispatch) => {
-  console.log(`11111`);
   dispatch(loadingState(true));
   post(`/quactions`, data)
     .then(({ data }) => {
@@ -20,7 +19,7 @@ export const createPaper = (data) => (dispatch) => {
         // history.push('/');
         dispatch(loadingState(false));
       } else {
-        throw new Error(data.msg || 'Login failed');
+        throw new Error(data.msg || 'quaction paper submition failed');
       }
     })
     .catch((error) => {
@@ -32,4 +31,5 @@ export const createPaper = (data) => (dispatch) => {
       dispatch(loadingState(false));
     });
 };
+
 
