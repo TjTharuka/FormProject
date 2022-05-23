@@ -13,6 +13,8 @@ import styles from './AddPaperComp.module.scss';
 import { Button } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPaper } from '../../actions/papers/papers';
+import { fileUpload } from '../../actions/files/file';
+import { postFormData } from '../../api/main.api';
 
 const AddPaperComp = ({setAddPaperState}) => {
 
@@ -49,32 +51,57 @@ const AddPaperComp = ({setAddPaperState}) => {
   
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // get all quactions by DOM
     const quactionsArray = Array.from(document.querySelectorAll('.AddQuaction'));
 
     // modifiy quaction details for api endpoint
-    const newQuactionArray=quactionsArray.map(element=>{
-      return{
-        // id:element.dataset.id,
+    const newQuactionArray=quactionsArray.map((element,index)=>{
+
+      let newQuactionObj={
+        id:element.dataset.id,
         question:element.querySelector('#quactionId').value,
-        questionType:"text",
+        questionType:allQuaction[index].file?"image":"text",
         adminId:userId
         // questionType:element.querySelector('#answerType').textContent
-      };
+      }
+
+
+      if(allQuaction[index].file){
+        const file=allQuaction[index].file.formData;
+        console.log(file);
+        // tempory
+        newQuactionObj.fileId=file; 
+        postFormData('files',file);
+      }
+
+    
+      
+      return newQuactionObj;
+
+
     });
-    console.log({
-      PaperName:PaperName,
-      adminId:userId,
-      dificultyLevel:diffculty,
-      grade:grade,
-      quactions:newQuactionArray
-    });
-    dispatch(createPaper({
-      PaperName:PaperName,
-      adminId:userId,
-      dificultyLevel:diffculty,
-      grade:grade,
-      quactions:newQuactionArray
-    }));
+
+
+    console.log(newQuactionArray);
+    console.log(allQuaction);
+    dispatch(fileUpload(newQuactionArray));
+
+
+    // console.log({
+    //   PaperName:PaperName,
+    //   adminId:userId,
+    //   dificultyLevel:diffculty,
+    //   grade:grade,
+    //   quactions:newQuactionArray
+    // });
+    // dispatch(createPaper({
+    //   PaperName:PaperName,
+    //   adminId:userId,
+    //   dificultyLevel:diffculty,
+    //   grade:grade,
+    //   quactions:newQuactionArray
+    // }));
 
   };
 

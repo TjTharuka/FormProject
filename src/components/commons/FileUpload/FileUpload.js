@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './FileUpload.module.scss';
 import cx from 'classnames';
 import { CloudUploadOutlined} from '@material-ui/icons';
+import { postFormData } from '../../../api/main.api';
 
 
 
@@ -10,7 +11,7 @@ function FileUpload({className="",id,handleImageAdd,setImageUploadModel,imageLoc
 
     // EVENT LISTNERS
     const handleChange=(e)=>{
-        const imagefile = e.target;
+        const imagefile = e.target.files[0];
         const formData = new FormData();
         const imgLocation = URL.createObjectURL(e.target.files[0]);
         
