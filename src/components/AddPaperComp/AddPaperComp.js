@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Col from 'reactstrap/lib/Col';
 import Container from 'reactstrap/lib/Container';
 import BasicModal from '../commons/Modal/BasicModal/BasicModal';
@@ -30,15 +30,20 @@ const AddPaperComp = ({setAddPaperState}) => {
 
   const dispatch = useDispatch();
 
+  // useEffect
+
   // EVENT HANDLERS
+  // handle add quaction
   const handleAddQuactionBtn = () => {
     setAllQuaction([...allQuaction,{id:Math.random()}]);
   };
+  // handle delete quaction
   const handleDeleteQuactionBtn = (id) => {
     const newQuactionArray=allQuaction.filter(quaction=>quaction.id !== id)
     setAllQuaction(newQuactionArray);
   };
 
+  // handle image add
   const handleImageAdd = (id,file) => {
     const newQuactionArray=allQuaction.map(quaction=>{
       if(quaction.id == id) return {...quaction,file:file,questionType:"image"}
@@ -47,6 +52,7 @@ const AddPaperComp = ({setAddPaperState}) => {
     setAllQuaction(newQuactionArray);
   };
   
+  // handle submit form
   const handleSubmit = (event) => {
     event.preventDefault();
 
