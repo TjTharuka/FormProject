@@ -26,6 +26,7 @@ const AddPaperComp = ({setAddPaperState}) => {
 
   // REDUX STATE
   const userId = useSelector((state) =>state.auth.user.user_id);
+  const upalodedFielsQuactions = useSelector((state) =>state.fileReducer.uplodedFiles);
 
   const dispatch = useDispatch();
 
@@ -39,10 +40,7 @@ const AddPaperComp = ({setAddPaperState}) => {
   };
 
   const handleImageAdd = (id,file) => {
-    console.log(file);
     const newQuactionArray=allQuaction.map(quaction=>{
-      console.log(quaction.id);
-      console.log(id);
       if(quaction.id == id) return {...quaction,file:file,questionType:"image"}
       return quaction;
     });
@@ -59,7 +57,6 @@ const AddPaperComp = ({setAddPaperState}) => {
     const newQuactionArray=quactionsArray.map((element,index)=>{
 
       let newQuactionObj={
-        id:element.dataset.id,
         question:element.querySelector('#quactionId').value,
         questionType:allQuaction[index].file?"image":"text",
         adminId:userId
@@ -69,7 +66,6 @@ const AddPaperComp = ({setAddPaperState}) => {
 
       if(allQuaction[index].file){
         const file=allQuaction[index].file.formData;
-        console.log(file);
         // tempory
         newQuactionObj.fileId=file; 
         postFormData('files',file);
@@ -83,18 +79,16 @@ const AddPaperComp = ({setAddPaperState}) => {
     });
 
 
-    console.log(newQuactionArray);
-    console.log(allQuaction);
     dispatch(fileUpload(newQuactionArray));
 
 
-    // console.log({
-    //   PaperName:PaperName,
-    //   adminId:userId,
-    //   dificultyLevel:diffculty,
-    //   grade:grade,
-    //   quactions:newQuactionArray
-    // });
+    console.log({
+      PaperName:PaperName,
+      adminId:userId,
+      dificultyLevel:diffculty,
+      grade:grade,
+      quactions:upalodedFielsQuactions
+    });
     // dispatch(createPaper({
     //   PaperName:PaperName,
     //   adminId:userId,
@@ -108,7 +102,7 @@ const AddPaperComp = ({setAddPaperState}) => {
 
   return (
     <>
-      {console.log(allQuaction)}
+      {console.log(upalodedFielsQuactions)}
 
       {/* Close button */}
       <Row className="justify-content-end">
@@ -128,7 +122,6 @@ const AddPaperComp = ({setAddPaperState}) => {
             </span>
           </Col>
       </Row>
-      {console.log(PaperName)}
 
       {/* title */}
       <Row className="justify-content-center mt-2 mb-3">

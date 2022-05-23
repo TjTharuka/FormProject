@@ -19,20 +19,17 @@ export const fileUpload = (quactionArray=[]) => (dispatch) => {
       postFormData(`/files`, quaction.fileId)
           // upload image file
           .then(({ data }) => {
-            console.log(data);
             if (data && data.status) {
               // set original file uploaded
               quaction.fileId=data.data._id;
-              // dispatch(addFile(quaction));
-              // dispatch(loadingState(false));
+              dispatch(addFile(quaction));
+              dispatch(loadingState(false));
               // history.push('/');
             } else {
               throw new Error(data.msg || 'file upload failed');
             }
           })
           .catch((error) => {
-            console.log(error);
-            console.log(error.response.data.msg);
             dispatch({
               type: TOAST_MESSAGE,
               status: false,

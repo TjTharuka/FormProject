@@ -78,7 +78,6 @@ const AddQuaction = ({setAddPaperState,handleDeleteQuactionBtn,handleImageAdd,id
               modalBodyStyles="p-0 px-4 py-3"
               size="md"
               >
-                {console.log(imageUploadModel)}
               <ImageUploadMOdel
                   id={id}
                   setImageUploadModel={()=>setImageUploadModel(!imageUploadModel)}

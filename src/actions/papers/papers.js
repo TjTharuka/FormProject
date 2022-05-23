@@ -13,7 +13,6 @@ export const createPaper = (data) => (dispatch) => {
   dispatch(loadingState(true));
   post(`/quactions`, data)
     .then(({ data }) => {
-      console.log(data);
       if (data && data.status) {
         // localStorage.setItem('user_accessToken', data.data);
         dispatch(addPapare(data));
@@ -24,8 +23,6 @@ export const createPaper = (data) => (dispatch) => {
       }
     })
     .catch((error) => {
-      console.log(error.response);
-      console.log(error.response.data.msg);
       dispatch({
         type: TOAST_MESSAGE,
         status: false,
