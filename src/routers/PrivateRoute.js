@@ -12,7 +12,7 @@ export const PrivateRoute = ({ component: Component, location, ...rest }) => {
   const searchUrl = location.search;
 
   // Temporay
-  const [addPaperState, setAddPaperState] = useState(true);
+  const [addPaperState, setAddPaperState] = useState(false);
 
   let finalUrl;
   if (searchUrl) {

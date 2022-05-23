@@ -1,21 +1,6 @@
-@import '../../styles/base/settings';
+@import '../../../styles/base/settings';
 
-#background {
-  z-index: 1;
+.paperCards {
 }
 
 
-#addPaperModelId{
-  max-width: 50%;
-}
-
-@media(max-width:870px){
-  #addPaperModelId{
-    max-width: 75%;
-  }
-}
-@media(max-width:576px){
-  #addPaperModelId{
-    max-width: 100%;
-  }
-}

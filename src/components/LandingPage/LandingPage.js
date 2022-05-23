@@ -13,6 +13,7 @@ import InputGroupAddon from 'reactstrap/lib/InputGroupAddon';
 import InputGroupText from 'reactstrap/lib/InputGroupText';
 import Row from 'reactstrap/lib/Row';
 import styles from './LandingPage.module.scss';
+import StudentHome from './components/StudentHome';
 
 const LandingPage = ({addPaperState, setAddPaperState}) => {
 
@@ -44,6 +45,7 @@ const LandingPage = ({addPaperState, setAddPaperState}) => {
               </div>
 
 
+
               {/*add paper model*/}
                 <BasicModal
                   isOpen={addPaperState}
@@ -57,6 +59,12 @@ const LandingPage = ({addPaperState, setAddPaperState}) => {
                 </BasicModal>
 
             </Container>
+
+            {/* Student Home */}
+            <Container>
+                <StudentHome className=""></StudentHome>
+            </Container>
+
           </section>
         </div>
       </main>
