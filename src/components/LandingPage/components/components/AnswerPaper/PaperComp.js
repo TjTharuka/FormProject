@@ -20,7 +20,8 @@ const AddPaperComp = ({setPaperViewState}) => {
 
   // REDUX STATE
   const userId = useSelector((state) =>state.auth.user.user_id);
-  const quactions = useSelector((state) =>state.paperReducer.selectedPaper?.quactions?state.paperReducer.selectedPaper?.quactions:[]);
+  // const quactions = useSelector((state) =>state.paperReducer.selectedPaper?.quactions?state.paperReducer.selectedPaper?.quactions:[]);
+  const selectedPaper = useSelector((state) =>state.paperReducer?.selectedPaper);
 
   const dispatch = useDispatch();
 
@@ -30,30 +31,28 @@ const AddPaperComp = ({setPaperViewState}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // get all quactions by DOM
-    const quactionsArray = Array.from(document.querySelectorAll('.AddQuaction'));
+    // get all quactionsId's and answers by DOM
+    const quactionsArray = Array.from(document.querySelectorAll('#quaction'));
 
-    // modifiy quaction details for api endpoint
-    const newQuactionArray=quactionsArray.map((element,index)=>{
-
-      let newQuactionObj={
-        question:element.querySelector('#quactionId').value,
-        questionType:allQuaction[index].file?"image":"text",
-        adminId:userId
-        // questionType:element.querySelector('#answerType').textContent
+    
+    // modifiy answers for api endpoint
+    const newAnswerArray=quactionsArray.map((element,index)=>{
+      console.log(element.querySelector('#quactionId'));
+      return{
+        question:element.querySelector('#quactionId').dataset.id,
+        answer:element.querySelector('#answerId').value,
       }
-
-
-      if(allQuaction[index].file){
-        const file=allQuaction[index].file.formData;
-        // tempory
-        newQuactionObj.fileId=file; 
-      }
-
-      return newQuactionObj;
     });
 
+    console.log(newAnswerArray);
 
+   const userAnswerPaper={
+    userId:userId,
+    paperId:selectedPaper._id,
+    answers:newAnswerArray
+    }
+
+    console.log(userAnswerPaper);
 
   };
 
@@ -101,11 +100,11 @@ const AddPaperComp = ({setPaperViewState}) => {
 
 
 
-        {/*Added Quactions */}
-        <div className='mt-3' id="addedQuactions">
+        {/*all Quactions */}
+        <div className='mt-3' id="allQuactions">
           {
-            quactions.map((quactionObj,index)=>(
-              <Question key={quactionObj.id} id={quactionObj.id} quaction={quactionObj} index={index} ></Question>
+            (selectedPaper.quactions?selectedPaper.quactions:[]).map((quactionObj,index)=>(
+              <Question key={quactionObj.id} id={quactionObj._id} quaction={quactionObj} index={index} ></Question>
             ))
           }
         </div>
