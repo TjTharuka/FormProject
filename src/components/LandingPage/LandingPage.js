@@ -15,8 +15,12 @@ import Row from 'reactstrap/lib/Row';
 import styles from './LandingPage.module.scss';
 import StudentHome from './components/StudentHome/StudentHome';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
+import { useSelector } from 'react-redux';
+import userAccessConfig from '../../config/userAccessConfig';
 
 const LandingPage = ({addPaperState, setAddPaperState}) => {
+
+  const selectUser = useSelector((state) => state.auth.user);
 
 
   return (
@@ -34,15 +38,18 @@ const LandingPage = ({addPaperState, setAddPaperState}) => {
             </div>
 
             {/* Student Home (user Role)*/}
-            <Container>
+           {(selectUser.role===userAccessConfig.userRoles.customer) && (
+           <Container>
                 <StudentHome className=""></StudentHome>
-            </Container>
+            </Container>)}
 
             {/* admin dashboard  (user Role)*/}
-            <Container>
+           {(selectUser.role===userAccessConfig.userRoles.admin) && (
+              <Container>
                 <AdminDashboard className=""></AdminDashboard>
-            </Container>
-
+              </Container>
+            )}
+           
           </section>
         </div>
       </main>
