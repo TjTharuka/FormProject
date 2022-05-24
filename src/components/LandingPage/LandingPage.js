@@ -22,7 +22,6 @@ const LandingPage = ({addPaperState, setAddPaperState}) => {
 
   const selectUser = useSelector((state) => state.auth.user);
 
-
   return (
     <>
       <main>
@@ -49,6 +48,18 @@ const LandingPage = ({addPaperState, setAddPaperState}) => {
                 <AdminDashboard className=""></AdminDashboard>
               </Container>
             )}
+
+            {/*add paper model*/}
+            <BasicModal
+                  isOpen={addPaperState}
+                  modalStyles={styles.addPaperModelId}
+                  modalBodyStyles="p-0 px-4 py-3"
+                  size="md"
+                  >
+                  <AddPaperComp
+                      setAddPaperState={()=>setAddPaperState(!addPaperState)}
+                  />
+              </BasicModal>
            
           </section>
         </div>

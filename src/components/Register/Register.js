@@ -49,7 +49,6 @@ const Register = () => {
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(
     false
   );
-  const [userRole, setuserRole] = useState(userAccessConfig.userRoles.customer);
 
   // Visibility click
   const passwordVisibilityChange = () => {
@@ -79,15 +78,12 @@ const Register = () => {
       email,
       password,
       phone,
-      role:userRole,
+      role:userAccessConfig.userRoles.customer,
     };
 
     dispatch(registerUser(userData));
   };
 
-  const handleRoleChange = (event) => {
-    setuserRole(event.target.value);
-  };
   return (
     <>
       <main className={styles.mainWrapper}>
@@ -300,18 +296,6 @@ const Register = () => {
                               component={InputError}
                             />
                           </FormGroup>
-                          {/* role */}
-                            <FormControl fullWidth className="mb-4 mt-4">
-                            <Select
-                              labelId="role"
-                              id="role"
-                              onChange={handleRoleChange}
-                              value={userRole}
-                            >
-                              <MenuItem id={userAccessConfig.userRoles.admin} value="admin">Teacher</MenuItem>
-                              <MenuItem id={userAccessConfig.userRoles.customer} value="customer">Student</MenuItem>
-                            </Select>
-                            </FormControl>
 
                           <div className="col-md-12 row d-flex justify-content-between align-items-center pt-2  px-0 mx-0">
                             <div className="col-12 px-0 d-flex justify-content-center">

@@ -17,15 +17,14 @@ export const selectPaperAction = (data) => ({
   data,
 });
 
-export const createPaper = (data) => (dispatch) => {
+export const createPaper = (data,closeModel) => (dispatch) => {
   dispatch(loadingState(true));
   post(`/quactions`, data)
     .then(({ data }) => {
       if (data && data.status) {
-        // localStorage.setItem('user_accessToken', data.data);
         dispatch(addPapareAction(data));
-        // history.push('/');
         dispatch(loadingState(false));
+        closeModel();
       } else {
         throw new Error(data.msg || 'quaction paper submition failed');
       }

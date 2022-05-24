@@ -39,7 +39,7 @@ const AddPaperComp = ({setAddPaperState}) => {
       dificultyLevel:diffculty,
       grade:grade,
       quactions:upalodedFielsQuactions.uplodedFiles
-    }));
+    },setAddPaperState));
 
       
     }
