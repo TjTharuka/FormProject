@@ -8,6 +8,7 @@ import styles from './SinglePaperAnswerModel.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import BootstrapTooltip from '../../../../../../../../../commons/toolTips/ToolTips';
 import Question from './../../../SinglePaper/Quaction/Question';
+import { PersonOutline, PersonOutlineOutlined } from '@material-ui/icons';
 
 const SinglePaperAnswerModel = ({closModel}) => {
 
@@ -20,7 +21,8 @@ const SinglePaperAnswerModel = ({closModel}) => {
 
   return (
     <>
-      {console.log(selectedAnswerPaper)}
+    {console.log(selectedAnswerPaper)}
+
       {/* Close button */}
       <Row className="justify-content-end">
           <Col xs={8}>
@@ -40,12 +42,24 @@ const SinglePaperAnswerModel = ({closModel}) => {
           </Col>
       </Row>
 
+      {/*Paper Name*/}
+      <BootstrapTooltip title="Paper Name">
+        <div className={cx(styles.paperName)}>{selectedAnswerPaper.paperId?.PaperName}</div>
+      </BootstrapTooltip>
+      
+      {/*student Name*/}
+      <BootstrapTooltip title="Student Name">
+        <div className={cx('mt-2',styles.studentName)}>
+              <PersonOutlineOutlined></PersonOutlineOutlined>
+              <span className='ml-1'>{selectedAnswerPaper?.userId?.name}</span>
+        </div>
+      </BootstrapTooltip>
+
          {/*all Quactions and answers */}
         <div className='mt-3' id="allQuactions">
               {
                 (selectedAnswerPaper.answers?selectedAnswerPaper.answers:[]).map((quactionObj,index)=>(
                   <>
-                  {console.log(quactionObj)}
                   <Question key={quactionObj._id} id={quactionObj._id} quaction={quactionObj.question} index={index} answer={quactionObj.answer}></Question>
                   </>
                 ))

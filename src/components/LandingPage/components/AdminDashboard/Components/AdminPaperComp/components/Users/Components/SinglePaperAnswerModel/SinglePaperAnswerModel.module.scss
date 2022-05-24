@@ -12,4 +12,12 @@
   transition:all .2s;
 }
 
-
+.studentName{
+  font-size: 1.2rem;
+  display: flex;
+}
+.paperName{
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
