@@ -31,7 +31,6 @@ const StudentHome = ({addPaperState, setAddPaperState}) => {
 
   return (
     <>
-    {console.log(allPapers)}
       <Row className={cx(styles.paperCards)}>
         {allPapers.map(quaction=>(
           <Col className='col-4'>

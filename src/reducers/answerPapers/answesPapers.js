@@ -7,7 +7,6 @@ const intialState={
 
 export default (state = intialState, action) => {
 
-  console.log(action);
   switch (action.type) {
     case LOAD_ANSWER_PAPERS:
       return {

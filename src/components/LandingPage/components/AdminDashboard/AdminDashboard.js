@@ -35,7 +35,6 @@ const AdminDashboard = ({addPaperState, setAddPaperState}) => {
 
   return (
     <>
-    {console.log(adminPaperViewState)}
     {/*all papers admin added*/}
     <Row className={cx("pb-2 pt-2",styles.allPapers)}>
       {allPapers.map((paper,index)=>(

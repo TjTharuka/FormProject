@@ -43,13 +43,32 @@ export const submitAnswerPaper = (data,removeModel) => (dispatch) => {
 
 export const loadAnswerPapers = (quary="") => (dispatch) => {
   dispatch(loadingState(true));
-  console.log(dispatch);
-  console.log(`${quary}`);
   get(`/userAnswers${quary}`)
   .then(({ data }) => {
     if (data && data.status) {
-      console.log(data);
       dispatch(loadAnswersAction(data.data.value));
+      dispatch(loadingState(false));
+      } else {
+        throw new Error(data.msg || 'Answer paper submition failed');
+      }
+    })
+    .catch((error) => {
+      dispatch({
+        type: TOAST_MESSAGE,
+        status: false,
+        message: error.response ? error.response.data.msg : error.message,
+      });
+      dispatch(loadingState(false));
+    });
+};
+
+export const selectAnswerPapers = (id) => (dispatch) => {
+  dispatch(loadingState(true));
+  get(`/userAnswers/${id}`)
+  .then(({ data }) => {
+    if (data && data.status) {
+      console.log(data);
+      dispatch(selectAnswersAction(data.data));
       dispatch(loadingState(false));
       } else {
         throw new Error(data.msg || 'Answer paper submition failed');
