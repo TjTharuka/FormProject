@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import BootstrapTooltip from '../../../../commons/toolTips/ToolTips';
 import { submitAnswerPaper } from '../../../../../actions/answerPaper/answerPaper';
 
-const AddPaperComp = ({setPaperViewState}) => {
+const PaperComp = ({setPaperViewState}) => {
 
   // STATE
   const [allQuaction, setAllQuaction] = useState([]);
@@ -113,4 +113,4 @@ const AddPaperComp = ({setPaperViewState}) => {
   );
 };
 
-export default AddPaperComp;
+export default PaperComp;

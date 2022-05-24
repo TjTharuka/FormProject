@@ -39,9 +39,9 @@ export const createPaper = (data) => (dispatch) => {
       dispatch(loadingState(false));
     });
 };
-export const loadPapers = (data) => (dispatch) => {
+export const loadPapers = (quary="") => (dispatch) => {
   dispatch(loadingState(true));
-  get(`/papers?limit=10`)
+  get(`/papers${quary}`)
     .then(({ data }) => {
       if (data && data.status) {
         dispatch(loadPaperAction(data.data.value));

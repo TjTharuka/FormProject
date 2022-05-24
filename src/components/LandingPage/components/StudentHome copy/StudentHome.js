@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Col from 'reactstrap/lib/Col';
 import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
-import styles from './AdminDashboard.module.scss';
+import styles from './StudentHome.module.scss';
 import cx from 'classnames';
 import PaperCard from '../components/PaperCard/PaperCards';
-import PaperComp from '../components/AnswerPaper/PaperComp';
+import PaperComp from '../components/AnswerPaper/PaperComp/PaperComp';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPapers, selectPaper } from '../../../../actions';
 import BasicModal from '../../../commons/Modal/BasicModal/BasicModal';
 
-const AdminDashboard = ({addPaperState, setAddPaperState}) => {
+const StudentHome = ({addPaperState, setAddPaperState}) => {
 
   // REDUX STATE
   const allPapers = useSelector((state) =>state.paperReducer.papers);
@@ -31,10 +31,24 @@ const AdminDashboard = ({addPaperState, setAddPaperState}) => {
 
   return (
     <>
+    {console.log(allPapers)}
+      <Row className={cx(styles.paperCards)}>
+        {allPapers.map(quaction=>(
+          <Col className='col-4'>
+            <PaperCard 
+              className="" 
+              key={quaction._id} 
+              id={quaction._id} 
+              selectPaperHandler={selectPaperHandler}
+              setPaperViewState={()=>setPaperViewState(!paperViewState)}
+              quaction={quaction}
+              >
+            </PaperCard>
+          </Col>
+        ))}
+      </Row>
 
-    <h1>Single</h1>
-
-      {/*view signle paper*/}
+      {/*add paper model*/}
       <BasicModal
         isOpen={paperViewState}
         modalStyles={styles.PaperViewModelId}
@@ -50,4 +64,4 @@ const AdminDashboard = ({addPaperState, setAddPaperState}) => {
   );
 };
 
-export default AdminDashboard;
+export default StudentHome;

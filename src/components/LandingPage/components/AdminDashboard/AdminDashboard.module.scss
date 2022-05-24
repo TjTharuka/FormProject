@@ -1,5 +1,22 @@
 @import '../../../../styles/base/settings';
 
+.allPapers{
+  background-color:white;
+  border-radius:5px; 
+}
+.paperTitle{
+  font-size: 1.35rem;
+  font-weight: bold;
+  cursor:pointer; 
+  border-bottom: 1px solid #80808066;
+  width: 100%;
+
+  &:hover{
+    background: #80808014;
+  }
+}
+
+
 #PaperViewModelId{
   max-width: 50%;
 }

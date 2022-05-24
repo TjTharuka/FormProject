@@ -4,44 +4,54 @@ import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
 import styles from './AdminDashboard.module.scss';
 import cx from 'classnames';
-import PaperComp from '../components/AnswerPaper/PaperComp';
+import AdminPaperComp from './Components/AdminPaperComp/AdminPaperComp';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadAnswerPapers,} from '../../../../actions';
+import { loadPapers, selectPaper} from '../../../../actions';
 import BasicModal from '../../../commons/Modal/BasicModal/BasicModal';
 
 const AdminDashboard = ({addPaperState, setAddPaperState}) => {
 
   // REDUX STATE
   const allPapers = useSelector((state) =>state.paperReducer.papers);
-  const [paperViewState, setPaperViewState] = useState(false);
+  const adminId = useSelector((state) => state.auth.user.user_id);
+
+  const [adminPaperViewState, setadminPaperViewState] = useState(false);
 
 
   const dispatch = useDispatch();
 
   useEffect(()=>{
     // load all answePapers
-    dispatch(loadAnswerPapers());
+    dispatch(loadPapers(`?adminId=${adminId}`));
   },[dispatch]);
 
-  // EVENT HANDLERS
+  // EVENT HANDLERS3
+  const handleClick=(id)=>{
+    // select paper
+    dispatch(selectPaper(id))
+    // open Model
+    setadminPaperViewState(true);
+  };
 
   return (
     <>
-
-    {/*  */}
-    <div className=''>
-
-    </div>
+    {console.log(adminPaperViewState)}
+    {/*all papers admin added*/}
+    <Row className={cx("pb-2 pt-2",styles.allPapers)}>
+      {allPapers.map((paper,index)=>(
+        <div key={paper._id} className={cx('ml-3 mt-2',styles.paperTitle)}  onClick={()=>handleClick(paper._id)}>{index+1}) {paper.PaperName}</div>
+      ))}
+    </Row>
 
       {/*view signle paper*/}
       <BasicModal
-        isOpen={paperViewState}
+        isOpen={adminPaperViewState}
         modalStyles={styles.PaperViewModelId}
         modalBodyStyles="p-0 px-4 py-3"
         size="md"
         >
-        <PaperComp
-            setPaperViewState={()=>setPaperViewState(!paperViewState)}
+        <AdminPaperComp
+            closModel={()=>setadminPaperViewState(!adminPaperViewState)}
         />
       </BasicModal>
 
