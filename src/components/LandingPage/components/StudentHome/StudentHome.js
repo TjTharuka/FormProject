@@ -32,15 +32,15 @@ const StudentHome = ({addPaperState, setAddPaperState}) => {
   return (
     <>
       <Row className={cx(styles.paperCards)}>
-        {allPapers.map(quaction=>(
+        {allPapers.map(paper=>(
           <Col className='col-4'>
             <PaperCard 
               className="" 
-              key={quaction._id} 
-              id={quaction._id} 
+              key={paper._id} 
+              id={paper._id} 
               selectPaperHandler={selectPaperHandler}
               setPaperViewState={()=>setPaperViewState(!paperViewState)}
-              quaction={quaction}
+              paper={paper}
               >
             </PaperCard>
           </Col>

@@ -17,14 +17,15 @@ export const selectAnswersAction = (data) => ({
 export const submitAnswerPaper = (data,removeModel) => (dispatch) => {
   dispatch(loadingState(true));
   post(`/userAnswers`, data)
-    .then(({ data }) => {
-      if (data && data.status) {
-        dispatch({
-          type: TOAST_MESSAGE,
-          status: true,
-          message: 'Answer Paper Submition Successfull',
-        });
-        removeModel();
+  .then(({ data }) => {
+    if (data && data.status) {
+      dispatch({
+        type: TOAST_MESSAGE,
+        status: true,
+        message: 'Answer Paper Submition Successfull',
+      });
+      removeModel();
+      dispatch(loadingState(false));
       } else {
         throw new Error(data.msg || 'Answer paper submition failed');
       }
@@ -40,11 +41,14 @@ export const submitAnswerPaper = (data,removeModel) => (dispatch) => {
 };
 
 
-export const loadAnswerPapers = () => (dispatch) => {
+export const loadAnswerPapers = (quary="") => (dispatch) => {
   dispatch(loadingState(true));
-  get(`/userAnswers`)
+  console.log(dispatch);
+  console.log(`${quary}`);
+  get(`/userAnswers${quary}`)
   .then(({ data }) => {
     if (data && data.status) {
+      console.log(data);
       dispatch(loadAnswersAction(data.data.value));
       dispatch(loadingState(false));
       } else {

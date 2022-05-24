@@ -30,7 +30,7 @@ const PaperComp = ({setPaperViewState}) => {
   // EVENT HANDLERS
   // handle submit form
   const handleSubmit = (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
     // get all quactionsId's and answers by DOM
     const quactionsArray = Array.from(document.querySelectorAll('#quaction'));

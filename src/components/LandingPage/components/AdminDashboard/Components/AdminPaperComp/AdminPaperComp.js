@@ -8,6 +8,7 @@ import styles from './AdminPaperComp.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import BootstrapTooltip from '../../../../../commons/toolTips/ToolTips';
 import SinglePaper from './components/SinglePaper/SinglePaper';
+import Users from './components/Users/Users';
 
 const AddPaperComp = ({closModel}) => {
 
@@ -49,6 +50,7 @@ const AddPaperComp = ({closModel}) => {
       {navState==="paper" && (<SinglePaper></SinglePaper>)}          
 
       {/* users */}
+      {navState==="users" && (<Users></Users>)}          
 
     </>
   );
