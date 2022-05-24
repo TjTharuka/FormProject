@@ -5,10 +5,11 @@
   border-radius:5px; 
 }
 .paperTitle{
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: bold;
   cursor:pointer; 
-  border-bottom: 1px solid #80808066;
+  border: 1px solid #80808066;
+  border-radius:15px;   
   width: 100%;
 
   &:hover{

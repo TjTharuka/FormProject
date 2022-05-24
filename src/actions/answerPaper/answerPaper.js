@@ -67,7 +67,6 @@ export const selectAnswerPapers = (id) => (dispatch) => {
   get(`/userAnswers/${id}`)
   .then(({ data }) => {
     if (data && data.status) {
-      console.log(data);
       dispatch(selectAnswersAction(data.data));
       dispatch(loadingState(false));
       } else {

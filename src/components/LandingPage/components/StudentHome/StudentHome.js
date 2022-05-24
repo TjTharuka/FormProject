@@ -33,7 +33,7 @@ const StudentHome = ({addPaperState, setAddPaperState}) => {
     <>
       <Row className={cx(styles.paperCards)}>
         {allPapers.map(paper=>(
-          <Col className='col-4'>
+          <Col className='col-4 mb-3'>
             <PaperCard 
               className="" 
               key={paper._id} 

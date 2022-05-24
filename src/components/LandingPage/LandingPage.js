@@ -18,8 +18,6 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 
 const LandingPage = ({addPaperState, setAddPaperState}) => {
 
-  // const [addPaperState, setAddPaperState] = useState(true);
-
 
   return (
     <>
@@ -34,37 +32,11 @@ const LandingPage = ({addPaperState, setAddPaperState}) => {
               <span />
               <span />
             </div>
-            <Container className="py-lg-md d-flex">
-              <div className="col px-0">
-                <Row>
-                  <Col lg="6">
-                    <h1 className="display-3 text-white">
-                      Papers
-                    </h1>
-                  </Col>
-                </Row>
-              </div>
-
-
-
-              {/*add paper model*/}
-                <BasicModal
-                  isOpen={addPaperState}
-                  modalStyles={styles.addPaperModelId}
-                  modalBodyStyles="p-0 px-4 py-3"
-                  size="md"
-                  >
-                  <AddPaperComp
-                      setAddPaperState={()=>setAddPaperState(!addPaperState)}
-                  />
-                </BasicModal>
-
-            </Container>
 
             {/* Student Home (user Role)*/}
-            {/* <Container>
+            <Container>
                 <StudentHome className=""></StudentHome>
-            </Container> */}
+            </Container>
 
             {/* admin dashboard  (user Role)*/}
             <Container>

@@ -80,23 +80,13 @@ const PaperComp = ({setPaperViewState}) => {
       {/* title */}
       <Row className="justify-content-center mt-2 mb-3">
         <h4 id={'styles.titleSize'} className=" font-weight-bold p-1">
-          Add Paper
+          {selectedPaper?.PaperName}
         </h4>
       </Row>
 
       <form onSubmit={handleSubmit}>
 
-        {/*button (add quaction button , submit button) row*/}
-        <Button
-              className={cx("background-primary cursor-pointer display-flex align-items-center ml-auto",styles.submitBtn)}
-              type="submit"
-              size="sm"
-            >
-              <span className="text-capitalize text-white">
-                Submit
-              </span>
-          </Button>
-
+       
 
 
         {/*all Quactions */}
@@ -107,6 +97,19 @@ const PaperComp = ({setPaperViewState}) => {
             ))
           }
         </div>
+
+
+         {/*button (add quaction button , submit button) row*/}
+         <Button
+              className={cx("mt-2 background-primary cursor-pointer display-flex align-items-center ml-auto",styles.submitBtn)}
+              type="submit"
+              size="sm"
+            >
+              <span className="text-capitalize text-white">
+                Submit
+              </span>
+          </Button>
+
       </form>
 
     </>

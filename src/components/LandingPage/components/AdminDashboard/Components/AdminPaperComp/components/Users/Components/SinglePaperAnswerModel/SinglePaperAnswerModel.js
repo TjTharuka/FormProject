@@ -21,7 +21,6 @@ const SinglePaperAnswerModel = ({closModel}) => {
 
   return (
     <>
-    {console.log(selectedAnswerPaper)}
 
       {/* Close button */}
       <Row className="justify-content-end">
@@ -40,6 +39,13 @@ const SinglePaperAnswerModel = ({closModel}) => {
               </BootstrapTooltip>
             </span>
           </Col>
+      </Row>
+
+      {/* title */}
+      <Row className="justify-content-center mt-2 mb-3">
+        <h4 id={'styles.titleSize'} className=" font-weight-bold p-1">
+          Answer Sheet
+        </h4>
       </Row>
 
       {/*Paper Name*/}

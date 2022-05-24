@@ -36,9 +36,9 @@ const AdminDashboard = ({addPaperState, setAddPaperState}) => {
   return (
     <>
     {/*all papers admin added*/}
-    <Row className={cx("pb-2 pt-2",styles.allPapers)}>
+    <Row className={cx("pb-2 pt-2 ",styles.allPapers)}>
       {allPapers.map((paper,index)=>(
-        <div key={paper._id} className={cx('ml-3 mt-2',styles.paperTitle)}  onClick={()=>handleClick(paper._id)}>{index+1}) {paper.PaperName}</div>
+        <div key={paper._id} className={cx('ml-3 mt-2 pl-2',styles.paperTitle)}  onClick={()=>handleClick(paper._id)}>{index+1}) {paper.PaperName}</div>
       ))}
     </Row>
 
