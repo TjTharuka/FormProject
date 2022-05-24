@@ -7,21 +7,25 @@ import cx from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadAnswerPapers, selectAnswerPapers } from '../../../../../../../../actions';
 import { PersonOutlineOutlined } from '@material-ui/icons';
+import SinglePaperAnswerModel from './Components/SinglePaperAnswerModel/SinglePaperAnswerModel';
+import BasicModal from '../../../../../../../commons/Modal/BasicModal/BasicModal';
 
 const AdminDashboard = ({addPaperState, setAddPaperState}) => {
 
   // REDUX STATE
-  // const selectAllAnswers = useSelector((state) =>state.answerPaperReducer?.answerPapers?state.answePaperReducer?.answerPapers:[]);
   const selectAllAnswers = useSelector((state) =>state.answerPaperReducer?.answerPapers);
   const paperId = useSelector((state) => state.paperReducer.selectedPaper._id);
+  const [viewAnswerPaperModel, setViewAnswerPaperModel] = useState(false);
 
 
   const dispatch = useDispatch();
 
   // EVENT LISTNERS
   const handleClick=(id)=>{
-    console.log(id);
+    // select paper answer
     dispatch(selectAnswerPapers(id))
+    // open Model
+    setViewAnswerPaperModel(!viewAnswerPaperModel)
   };
 
   useEffect(()=>{
@@ -42,6 +46,19 @@ const AdminDashboard = ({addPaperState, setAddPaperState}) => {
         </>
       ))}
     </Row>
+
+
+    {/*view signle answer paper*/}
+    <BasicModal
+        isOpen={viewAnswerPaperModel}
+        modalStyles={styles.PaperViewModelId}
+        modalBodyStyles="p-0 px-4 py-3"
+        size="md"
+        >
+        <SinglePaperAnswerModel
+            closModel={()=>setViewAnswerPaperModel(!viewAnswerPaperModel)}
+        />
+      </BasicModal>
     </>
   );
 };

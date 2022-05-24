@@ -4,7 +4,7 @@ import styles from './Question.module.scss';
 import { FormControl, MenuItem, Select, TextField } from '@material-ui/core';
 
 
-const AddQuaction = ({id,imageLocation,quaction,index}) => {
+const AddQuaction = ({id,imageLocation,quaction,index,answer=null}) => {
   
 
   return (
@@ -21,7 +21,8 @@ const AddQuaction = ({id,imageLocation,quaction,index}) => {
 
 
             {/* Answer row*/}
-            <div className={cx('ml-3 mt-3',styles.answerLine)}>Answer</div>
+            {!answer &&<div className={cx('ml-3 mt-3',styles.answerLine)}>Answer</div>}
+            {answer && <div className={cx('ml-3 mt-3',styles.answerLine)}>{answer}</div>}
 
       </div>
 
