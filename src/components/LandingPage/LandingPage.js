@@ -13,7 +13,8 @@ import InputGroupAddon from 'reactstrap/lib/InputGroupAddon';
 import InputGroupText from 'reactstrap/lib/InputGroupText';
 import Row from 'reactstrap/lib/Row';
 import styles from './LandingPage.module.scss';
-import StudentHome from './components/StudentHome';
+import StudentHome from './components/StudentHome/StudentHome';
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 
 const LandingPage = ({addPaperState, setAddPaperState}) => {
 
@@ -60,9 +61,14 @@ const LandingPage = ({addPaperState, setAddPaperState}) => {
 
             </Container>
 
-            {/* Student Home */}
-            <Container>
+            {/* Student Home (user Role)*/}
+            {/* <Container>
                 <StudentHome className=""></StudentHome>
+            </Container> */}
+
+            {/* admin dashboard  (user Role)*/}
+            <Container>
+                <AdminDashboard className=""></AdminDashboard>
             </Container>
 
           </section>

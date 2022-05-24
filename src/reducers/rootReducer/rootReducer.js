@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { auth, loadingReducer, toastReducer,paperReducer,fileReducer } from '../index';
+import { auth, loadingReducer, toastReducer,paperReducer,fileReducer,answePaperReducer } from '../index';
 import { EMPTY_STATE } from '../../actions/types';
 
 const rootReducer = combineReducers({
@@ -7,7 +7,8 @@ const rootReducer = combineReducers({
   loadingReducer,
   toastReducer,
   paperReducer,
-  fileReducer
+  fileReducer,
+  answePaperReducer
 });
 
 export default (state, action) =>

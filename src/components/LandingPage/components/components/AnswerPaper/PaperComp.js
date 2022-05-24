@@ -9,6 +9,7 @@ import Question from './components/Quaction/Question';
 import { Button } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import BootstrapTooltip from '../../../../commons/toolTips/ToolTips';
+import { submitAnswerPaper } from '../../../../../actions/answerPaper/answerPaper';
 
 const AddPaperComp = ({setPaperViewState}) => {
 
@@ -37,14 +38,12 @@ const AddPaperComp = ({setPaperViewState}) => {
     
     // modifiy answers for api endpoint
     const newAnswerArray=quactionsArray.map((element,index)=>{
-      console.log(element.querySelector('#quactionId'));
       return{
         question:element.querySelector('#quactionId').dataset.id,
         answer:element.querySelector('#answerId').value,
       }
     });
 
-    console.log(newAnswerArray);
 
    const userAnswerPaper={
     userId:userId,
@@ -52,7 +51,7 @@ const AddPaperComp = ({setPaperViewState}) => {
     answers:newAnswerArray
     }
 
-    console.log(userAnswerPaper);
+    dispatch(submitAnswerPaper(userAnswerPaper,setPaperViewState));
 
   };
 
